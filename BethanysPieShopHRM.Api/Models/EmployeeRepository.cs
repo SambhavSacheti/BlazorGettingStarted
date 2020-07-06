@@ -18,6 +18,15 @@ namespace BethanysPieShopHRM.Api.Models
             return _appDbContext.Employees;
         }
 
+        public IEnumerable<Employee> GetEmployees(string filter)
+        {
+            return _appDbContext
+            .Employees
+            .Where(o=>
+            o.FirstName.Contains(filter)||
+            o.LastName.Contains(filter) );
+        }
+
         public Employee GetEmployeeById(int employeeId)
         {
             return _appDbContext.Employees.FirstOrDefault(c => c.EmployeeId == employeeId);

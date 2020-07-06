@@ -9,6 +9,8 @@
 }
 else
 {
+    <button @onclick="@DoEmployeeSearch" class="btn btn-dark table-btn">Search</button>
+    <input class="form-control" @bind="SearchFilter" @bind:event="oninput"  placeholder="Enter first name" />
     <table class="table">
         <thead>
             <tr>

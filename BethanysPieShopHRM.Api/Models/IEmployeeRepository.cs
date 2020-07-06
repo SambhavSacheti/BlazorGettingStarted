@@ -9,6 +9,8 @@ namespace BethanysPieShopHRM.Api.Models
     public interface IEmployeeRepository
     {
         IEnumerable<Employee> GetAllEmployees();
+
+        IEnumerable<Employee> GetEmployees(string filter);
         Employee GetEmployeeById(int employeeId);
         Employee AddEmployee(Employee employee);
         Employee UpdateEmployee(Employee employee);

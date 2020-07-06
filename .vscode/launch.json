@@ -34,7 +34,7 @@
            "cwd": "${workspaceFolder}/BethanysPieShopHRM.Api",
            "stopAtEntry": false,
            "serverReadyAction": {
-               "action": "debugWithChrome",
+               "action": "openExternally",
                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
            },
            "env": {

@@ -1,4 +1,5 @@
-﻿using BethanysPieShopHRM.Api.Models;
+﻿using System.Collections.Generic;
+using BethanysPieShopHRM.Api.Models;
 using BethanysPieShopHRM.Shared;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,11 +22,30 @@ namespace BethanysPieShopHRM.Api.Controllers
             return Ok(_employeeRepository.GetAllEmployees());
         }
 
-        [HttpGet("{id}")]
+         [HttpGet("{id}")]
         public IActionResult GetEmployeeById(int id)
         {
             return Ok(_employeeRepository.GetEmployeeById(id));
         }
+
+        // A very simple search routine
+        [HttpGet("search")]
+        public IActionResult GetEmployeeByName(string firstName, string lastName)
+        {
+            var searchResult = new List<Employee>();
+            // We didnt received search criteria. Lets send all the employees to keep it simple.
+            if(firstName == null) 
+            return Ok(_employeeRepository.GetAllEmployees());
+           
+           foreach(var employee in _employeeRepository.GetAllEmployees())
+           {
+               if(employee.FirstName.ToLower().Contains(firstName) 
+               || employee.LastName.ToLower().Contains(firstName) )
+               searchResult.Add(employee);
+           }
+           return Ok(searchResult);
+        }
+
 
         [HttpPost]
         public IActionResult CreateEmployee([FromBody] Employee employee)

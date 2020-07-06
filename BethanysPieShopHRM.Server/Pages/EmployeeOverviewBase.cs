@@ -18,6 +18,8 @@ namespace BethanysPieShopHRM.Server.Pages
 
         protected AddEmployeeDialog AddEmployeeDialog { get; set; }
 
+        protected string SearchFilter{get;set;} = string.Empty;
+
         protected override async Task OnInitializedAsync()
         {
             Employees = (await EmployeeDataService.GetAllEmployees()).ToList();
@@ -33,5 +35,12 @@ namespace BethanysPieShopHRM.Server.Pages
         {
             AddEmployeeDialog.Show();
         }
+
+        protected async void DoEmployeeSearch()
+        {
+         Employees = (await EmployeeDataService.GetEmployees(SearchFilter.ToLower())).ToList(); 
+         StateHasChanged();
+        }
+
     }
 }

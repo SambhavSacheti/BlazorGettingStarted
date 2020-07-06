@@ -22,6 +22,12 @@ namespace BethanysPieShopHRM.Server.Services
                 (await _httpClient.GetStreamAsync($"api/employee"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
+        public async Task<IEnumerable<Employee>> GetEmployees(string filter)
+        {
+            return await JsonSerializer.DeserializeAsync<IEnumerable<Employee>>
+                (await _httpClient.GetStreamAsync($"api/employee/search?firstname={filter}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+        }
+
         public async Task<Employee> GetEmployeeDetails(int employeeId)
         {
             return await JsonSerializer.DeserializeAsync<Employee>
@@ -55,5 +61,6 @@ namespace BethanysPieShopHRM.Server.Services
         {
             await _httpClient.DeleteAsync($"api/employee/{employeeId}");
         }
+
     }
 }

@@ -137,5 +137,10 @@ namespace BethanysPieShopHRM.Server.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task<IEnumerable<Employee>> GetEmployees(string searchFilter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
